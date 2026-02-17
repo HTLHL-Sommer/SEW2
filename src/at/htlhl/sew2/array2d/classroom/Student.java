@@ -37,12 +37,9 @@ public class Student {
 
     @Override
     public boolean equals(Object obj) {
-        // TODO 6: Implementiere die equals()-Methode wie im SEW2 Unterricht im 1. Semester gezeigt.
-        //         Student:innen sind dann gleich, wenn sowohl Vorname, Nachname und das Geburtdatum gleich sind.
-        
-
-
-
-        return false; // ersetzen!
+        if (this == obj) return false;
+        if (!(obj instanceof Student)) return false;
+        Student k = (Student) obj;
+        return this.firstname.equals(k.firstname) && this.lastname.equals(k.lastname) && this.dateOfBirth.equals(k.dateOfBirth);
     }
 }
