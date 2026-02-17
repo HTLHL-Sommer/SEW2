@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Student {
     private static int numberOfStudents = 0;
-    private int number;
-    private String firstname;
-    private String lastname;
-    private char gender; // M ... male, F ... female, D ... diverse
-    private LocalDate dateOfBirth;
+    private final int number;
+    private final String firstname;
+    private final String lastname;
+    private final char gender; // M ... male, F ... female, D ... diverse
+    private final LocalDate dateOfBirth;
 
     public Student(String firstname, String lastname, char gender, String dob) {
         // TODO 4: Implementiere im Konstruktor, dass alle Instanzvariablen einen gültigen Wert haben.
