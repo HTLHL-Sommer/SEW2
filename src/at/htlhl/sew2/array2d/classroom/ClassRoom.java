@@ -18,13 +18,12 @@ public class ClassRoom {
 
     public void addStudent(Student student) {
         for (Student stud : students) {
-            if (stud.equals(student)) {
+            if (student.equals(stud)) {
                 IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
                 return;
             }
         }
         students.add(student);
-
     }
 
     public Student findStudentAtIndex(int pos) {
@@ -33,30 +32,20 @@ public class ClassRoom {
     }
 
     public void assignSeat(Student student, int row, int col) {
-        // TODO 9: Implementiere die folgenden "early return" Punkte wie angegeben.
-        // 1. Ist der Student in der Klassenliste eingetragen?
-        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
-        //      die Methode mit return beendet werden.
-        //    "Fehler: <full name> gehört nicht zu dieser Klasse"
-        
+        if (students.contains(student)) {
+            IO.println("Fehler: " + student.getFullName() + " gehört nicht zu dieser Klasse");
+            return;
+        }
 
+        if (row <= this.row && col <= this.col) {
+            IO.println("Fehler: Ungültige Koordinaten [" + row + "][" + col + "].");
+            return;
+        }
 
-
-        // 2. Sind die Sitzplatzkooridanten gültig?
-        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
-        //      die Methode mit return beendet werden.
-        //    "Fehler: Ungültige Koordinaten [<row>][<col>]."
-        
-
-
-
-        // 3. Ist der Sitzplatz verfügbar?
-        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
-        //      die Methode mit return beendet werden.
-        //    "Fehler: Platz [<row>][<col>] bereits durch <full name> besetzt!"
-        
-
-
+        if (seats[row][col] != null) {
+            IO.println("Fehler: Platz [" + row + "][" + col + "] bereits durch " + seats[row][col].getFullName() + " besetzt!");
+            return;
+        }
 
         // TODO 10: Weise den übergebenen Studenten dem gewählten Sitzplatz zu.
         
