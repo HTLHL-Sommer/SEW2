@@ -9,7 +9,6 @@ public class ClassRoom {
     private final ArrayList<Student> students;
 
     public ClassRoom(int row, int col) {
-        // TODO 7: Initialisiere die Instanzvariablen im Konstruktor.
         this.row = row;
         this.col = col;
 
@@ -18,9 +17,6 @@ public class ClassRoom {
     }
 
     public void addStudent(Student student) {
-        // TODO 8: Prüfe, ob der Student in der Klassenliste enthalten ist.
-        //         Wenn der Student enthalten ist, dann gib "Fehler: <full name> bereits in Klassenliste!" aus,
-        //           sonst füge den Studenten zur Studentenliste hinzu.
         if (!students.contains(student)) {
             students.add(student);
         } else {
