@@ -10,6 +10,11 @@ public class ClassRoom {
 
     public ClassRoom(int row, int col) {
         // TODO 7: Initialisiere die Instanzvariablen im Konstruktor.
+        this.row = row;
+        this.col = col;
+
+        this.seats = new Student[row][col];
+        this.students = new ArrayList<>();
     }
 
     public void addStudent(Student student) {
