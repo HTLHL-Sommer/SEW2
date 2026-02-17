@@ -3,10 +3,10 @@ package at.htlhl.sew2.array2d.classroom;
 import java.util.ArrayList;
 
 public class ClassRoom {
-    private int row;
-    private int col;
-    private Student[][] seats;
-    private ArrayList<Student> students;
+    private final int row;
+    private final int col;
+    private final Student[][] seats;
+    private final ArrayList<Student> students;
 
     public ClassRoom(int row, int col) {
         // TODO 7: Initialisiere die Instanzvariablen im Konstruktor.
