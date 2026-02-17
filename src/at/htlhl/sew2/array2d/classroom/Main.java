@@ -12,8 +12,12 @@ public class Main {
 
         classRoom.assignSeat(classRoom.findStudentAtIndex(20), 1, 5);
 
-        // TODO 3: Weise weiteren zwei Namen einen Platz in der ersten Reihe zu und
-        //         zwei anderen Namen einen Platz in der dritten Reihe.
+        classRoom.assignSeat(classRoom.findStudentAtIndex(15), 0, 0);
+        classRoom.assignSeat(classRoom.findStudentAtIndex(1), 0, 1);
+        classRoom.assignSeat(classRoom.findStudentAtIndex(23), 0, 2);
+
+        classRoom.assignSeat(classRoom.findStudentAtIndex(5), 2, 5);
+        classRoom.assignSeat(classRoom.findStudentAtIndex(18), 2, 6);
 
         classRoom.showSeats();
     }
