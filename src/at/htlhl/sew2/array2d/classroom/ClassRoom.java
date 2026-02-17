@@ -1,0 +1,82 @@
+package at.htlhl.sew2.array2d.classroom;
+
+import java.util.ArrayList;
+
+public class ClassRoom {
+    private int row;
+    private int col;
+    private Student[][] seats;
+    private ArrayList<Student> students;
+
+    public ClassRoom(int row, int col) {
+        // TODO 7: Initialisiere die Instanzvariablen im Konstruktor.
+    }
+
+    public void addStudent(Student student) {
+        // TODO 8: Prüfe, ob der Student in der Klassenliste enthalten ist.
+        //         Wenn der Student enthalten ist, dann gib "Fehler: <full name> bereits in Klassenliste!" aus,
+        //           sonst füge den Studenten zur Studentenliste hinzu.
+        if (!students.contains(student)) {
+            students.add(student);
+        } else {
+            IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
+        }
+
+    }
+
+    public Student findStudentAtIndex(int pos) {
+        if (pos < 0 || pos >= students.size()) { return null; }
+        return students.get(pos);
+    }
+
+    public void assignSeat(Student student, int row, int col) {
+        // TODO 9: Implementiere die folgenden "early return" Punkte wie angegeben.
+        // 1. Ist der Student in der Klassenliste eingetragen?
+        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
+        //      die Methode mit return beendet werden.
+        //    "Fehler: <full name> gehört nicht zu dieser Klasse"
+        
+
+
+
+        // 2. Sind die Sitzplatzkooridanten gültig?
+        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
+        //      die Methode mit return beendet werden.
+        //    "Fehler: Ungültige Koordinaten [<row>][<col>]."
+        
+
+
+
+        // 3. Ist der Sitzplatz verfügbar?
+        //    Wenn nicht, dann soll der nachfolgende Text auf der Konsole ausgegeben und
+        //      die Methode mit return beendet werden.
+        //    "Fehler: Platz [<row>][<col>] bereits durch <full name> besetzt!"
+        
+
+
+
+        // TODO 10: Weise den übergebenen Studenten dem gewählten Sitzplatz zu.
+        
+
+        IO.println(student.getFullName() + " wurde auf [" + row + "][" + col + "] gesetzt.");
+    }
+
+    // Hilfsmethode für bessere Lesbarkeit
+    private boolean isCoordinateValid(int r, int c) {
+        return r >= 0 && r < this.row && c >= 0 && c < this.col;
+    }
+
+    public void showSeats() {
+        IO.println("\n--- Aktueller Sitzplan ---");
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (seats[i][j] == null) {
+                    IO.print("[ Leer ] ");
+                } else {
+                    IO.print("[" + seats[i][j].getFullName() + "] ");
+                }
+            }
+            IO.println();
+        }
+    }
+}
