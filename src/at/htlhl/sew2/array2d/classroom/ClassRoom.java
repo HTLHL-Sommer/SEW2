@@ -17,11 +17,13 @@ public class ClassRoom {
     }
 
     public void addStudent(Student student) {
-        if (!students.contains(student)) {
-            students.add(student);
-        } else {
-            IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
+        for (Student stud : students) {
+            if (stud.equals(student)) {
+                IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
+                return;
+            }
         }
+        students.add(student);
 
     }
 
