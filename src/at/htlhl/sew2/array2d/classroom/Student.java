@@ -11,9 +11,13 @@ public class Student {
     private final LocalDate dateOfBirth;
 
     public Student(String firstname, String lastname, char gender, String dob) {
-        // TODO 4: Implementiere im Konstruktor, dass alle Instanzvariablen einen gültigen Wert haben.
-        
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.dateOfBirth = LocalDate.parse(dob);
 
+        this.number = numberOfStudents + 1;
+        numberOfStudents++;
     }
 
     @Override
