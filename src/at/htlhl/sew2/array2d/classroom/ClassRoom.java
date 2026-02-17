@@ -47,7 +47,7 @@ public class ClassRoom {
             return;
         }
 
-        // TODO 10: Weise den übergebenen Studenten dem gewählten Sitzplatz zu.
+        seats[row][col] = student;
         
 
         IO.println(student.getFullName() + " wurde auf [" + row + "][" + col + "] gesetzt.");
