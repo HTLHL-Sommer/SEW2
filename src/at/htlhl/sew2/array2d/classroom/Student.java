@@ -30,11 +30,9 @@ public class Student {
     }
 
     public static Student valueOf(String input) {
-        // TODO 5: Implementiere die valueOf() Methode. Der "delimiter" des Input-Strings ist der Strichpunkt.
-        //         Achtung: Die Katalognummer wird im Konstruktor vergeben!
-        
-
-        return null; // ersetzen!
+        String[] split = input.split(";");
+        if (!(split.length == 5)) return null;
+        else return new Student(split[1], split[2], split[3].toCharArray()[0], split[4]);
     }
 
     @Override
