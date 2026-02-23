@@ -1,10 +1,11 @@
 package at.htlhl.sew2.array2d.tictactoe;
 
 public class Board {
-    private Player[][] grid;
+    private static final int GRID_SIZE = 3;
+    private final Player[][] grid;
 
     public Board() {
-        grid = new Player[3][3];
+        grid = new Player[GRID_SIZE][GRID_SIZE];
     }
 
     public boolean place(int row, int col, Player player) {
@@ -16,14 +17,14 @@ public class Board {
     }
 
     public boolean hasWon(Player player) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < GRID_SIZE; i++) {
             if (checkSame(player, grid[i]) || (player.equals(grid[0][i]) && grid[0][i].equals(grid[1][i]) && grid[1][i].equals(grid[2][i]))) {
                 return true;
             }
         }
 
-        Player[][] diagonals = new Player[2][3];
-        for (int i = 0; i < 3; i++) {
+        Player[][] diagonals = new Player[2][GRID_SIZE];
+        for (int i = 0; i < GRID_SIZE; i++) {
             diagonals[0][i] = grid[i][i];
             diagonals[1][i] = grid[i][2 - i];
         }

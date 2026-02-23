@@ -1,9 +1,9 @@
 package at.htlhl.sew2.array2d.tictactoe;
 
 public class Game {
-    public Board board;
-    public Player[] players;
-    public int currentPlayer;
+    private final Board board;
+    private final Player[] players;
+    private int currentPlayer;
 
     public Game(Player[] players) {
         this.board = new Board();
@@ -44,7 +44,7 @@ public class Game {
         }
     }
 
-    public void switchPlayer() {
+    private void switchPlayer() {
         this.currentPlayer++;
         if (this.currentPlayer == this.players.length) {
             this.currentPlayer = 0;
