@@ -17,11 +17,9 @@ public class ClassRoom {
     }
 
     public void addStudent(Student student) {
-        for (Student stud : students) {
-            if (student.equals(stud)) {
-                IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
-                return;
-            }
+        if (students.contains(student)) {
+            IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
+            return;
         }
         students.add(student);
     }
