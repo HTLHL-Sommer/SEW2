@@ -37,7 +37,7 @@ public class ClassRoom {
             return;
         }
 
-        if (isCoordinateValid(row, col)) {
+        if (!isCoordinateValid(row, col)) {
             IO.println("Fehler: Ungültige Koordinaten [" + row + "][" + col + "].");
             return;
         }
