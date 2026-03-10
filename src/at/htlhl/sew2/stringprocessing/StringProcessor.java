@@ -34,5 +34,9 @@ public class StringProcessor {
 
         int firstIndex = "abxyabxyabxyab".indexOf("xy");
         IO.println("abxyabxyabxyab".lastIndexOf("xy", firstIndex + 1));
+
+
+        String sub = "abcdefghi".substring(2, 4);
+        String replaced = "abcd".replace('c', 'x');
     }
 }
