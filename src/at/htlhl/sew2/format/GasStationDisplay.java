@@ -13,4 +13,8 @@ void main() {
     IO.println("-----------------------------------");
     IO.println(String.format("%-20s %10s", "Fuel Type", "Price (€/1)"));
     IO.println("-----------------------------------");
+    for (Fuel fuel : fuelList) {
+        IO.println(String.format("%-20s %10s", fuel.getName(), fuel.getPrice()));
+    }
+    IO.println("-----------------------------------");
 }
