@@ -12,6 +12,12 @@ void main() {
     String userInput = IO.readln("Eigene Treibstoffsorte inkl. Preis <fuel>;<price>: ");
     Fuel userFuel = Fuel.valueOf(userInput);
 
+    if (fuelList.contains(userFuel)) {
+        IO.println("Treibstoff mit gleichen Namen & Preis enthalten");
+    } else {
+        IO.println("Treibstoff ist neu");
+    }
+
     IO.println("-----------------------------------");
     IO.println(String.format("%27s", "Gas Station Prices"));
     IO.println("-----------------------------------");
