@@ -10,14 +10,19 @@ public class Main {
 
         readStudentsFromFile(classRoom);
 
-        classRoom.assignSeat(classRoom.findStudentAtIndex(20), 1, 5);
+        try {
 
-        classRoom.assignSeat(classRoom.findStudentAtIndex(15), 0, 0);
-        classRoom.assignSeat(classRoom.findStudentAtIndex(1), 0, 1);
-        classRoom.assignSeat(classRoom.findStudentAtIndex(23), 0, 2);
+            classRoom.assignSeat(classRoom.findStudentAtIndex(20), 1, 5);
 
-        classRoom.assignSeat(classRoom.findStudentAtIndex(5), 2, 5);
-        classRoom.assignSeat(classRoom.findStudentAtIndex(18), 2, 6);
+            classRoom.assignSeat(classRoom.findStudentAtIndex(15), 0, 0);
+            classRoom.assignSeat(classRoom.findStudentAtIndex(1), 0, 1);
+            classRoom.assignSeat(classRoom.findStudentAtIndex(23), 0, 2);
+
+            classRoom.assignSeat(classRoom.findStudentAtIndex(5), 2, 5);
+            classRoom.assignSeat(classRoom.findStudentAtIndex(18), 2, 6);
+        } catch (IllegalArgumentException iaex) {
+            IO.println(iaex.getLocalizedMessage());
+        }
 
         classRoom.showSeats();
     }

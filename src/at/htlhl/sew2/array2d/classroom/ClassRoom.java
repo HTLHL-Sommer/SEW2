@@ -41,8 +41,8 @@ public class ClassRoom {
         }
 
         if (seats[row][col] != null) {
-            IO.println("Fehler: Platz [" + row + "][" + col + "] bereits durch " + seats[row][col].getFullName() + " besetzt!");
-            return;
+            // IO.println("Fehler: Platz [" + row + "][" + col + "] bereits durch " + seats[row][col].getFullName() + " besetzt!");
+            throw new IllegalArgumentException(student.getFullName() + " gehört nicht zu dieser Klasse");
         }
 
         seats[row][col] = student;
