@@ -18,8 +18,8 @@ public class ClassRoom {
 
     public void addStudent(Student student) {
         if (students.contains(student)) {
-            IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
-            return;
+            // IO.println("Fehler: " + student.getFullName() + " bereits in Klassenliste!");
+            throw new IllegalArgumentException(student.getFullName() + " bereits in Klassenliste!");
         }
         students.add(student);
     }
@@ -31,18 +31,18 @@ public class ClassRoom {
 
     public void assignSeat(Student student, int row, int col) {
         if (students.contains(student)) {
-            IO.println("Fehler: " + student.getFullName() + " gehört nicht zu dieser Klasse");
-            return;
+            // IO.println("Fehler: " + student.getFullName() + " gehört nicht zu dieser Klasse");
+            throw new IllegalArgumentException(student.getFullName() + " gehört nicht zu dieser Klasse");
         }
 
         if (!isCoordinateValid(row, col)) {
-            IO.println("Fehler: Ungültige Koordinaten [" + row + "][" + col + "].");
-            return;
+            // IO.println("Fehler: Ungültige Koordinaten [" + row + "][" + col + "].");
+            throw new IllegalArgumentException("Ungültige Koordinaten [" + row + "][" + col + "].");
         }
 
         if (seats[row][col] != null) {
             // IO.println("Fehler: Platz [" + row + "][" + col + "] bereits durch " + seats[row][col].getFullName() + " besetzt!");
-            throw new IllegalArgumentException(student.getFullName() + " gehört nicht zu dieser Klasse");
+            throw new IllegalArgumentException("Platz [" + row + "][" + col + "] bereits durch " + seats[row][col].getFullName() + " besetzt!");
         }
 
         seats[row][col] = student;
