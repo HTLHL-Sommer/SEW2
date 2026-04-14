@@ -24,5 +24,10 @@ public class Zoo {
             default:
                 IO.println("Irgendein Kriechtier");
         }
+
+        IO.println("Alle Creatures: ");
+        for (Creature c : Creature.values()) {
+            IO.println(c.toString());
+        }
     }
 }
