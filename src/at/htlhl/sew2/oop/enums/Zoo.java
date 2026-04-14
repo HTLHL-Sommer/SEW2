@@ -27,7 +27,8 @@ public class Zoo {
 
         IO.println("Alle Creatures: ");
         for (Creature c : Creature.values()) {
-            IO.println(c.toString());
+            IO.println(c);
+            IO.println(c.getLegs());
         }
     }
 }
