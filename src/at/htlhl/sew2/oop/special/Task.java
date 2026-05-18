@@ -3,7 +3,7 @@ package at.htlhl.sew2.oop.special;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Task {
+public class Task implements Comparable<Task> {
     int id;
     boolean completed;
     String title;
@@ -17,6 +17,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public static Task valueOf(String input) {
+        String[] parts = input.split(";");
+        return new Task(Integer.parseInt(parts[0]), Boolean.parseBoolean(parts[1]), parts[2], LocalDateTime.parse(parts[3], FORMATTER));
+    }
+
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (!(obj instanceof Task)) return false;
@@ -27,9 +32,17 @@ public class Task {
 
     @Override
     public String toString() {
-        String hour = String.valueOf(this.dueDate.getHour()).length() == 1 ? this.dueDate.getHour() + "0" : String.valueOf(this.dueDate.getHour());
-        String minute = String.valueOf(this.dueDate.getMinute()).length() == 1 ? this.dueDate.getMinute() + "0" : String.valueOf(this.dueDate.getMinute());
-        String second = String.valueOf(this.dueDate.getSecond()).length() == 1 ? this.dueDate.getSecond() + "0" : String.valueOf(this.dueDate.getSecond());
-        return this.id + ", " + this.title + ", " + this.completed + ", " + this.dueDate.getDayOfMonth() + ". " + this.dueDate.getMonthValue() + ". " + this.dueDate.getYear() + " " + hour + ":" + minute + ":" + second;
+        return this.id + ", " + this.title + ", " + this.completed + ", " + FORMATTER.format(this.dueDate);
+    }
+
+    public int compareTo(Task other) {
+        int diff = Boolean.compare(this.completed, other.completed);
+        if (diff == 0) {
+            diff = this.dueDate.compareTo(other.dueDate);
+            if (diff == 0) {
+                diff = this.title.compareTo(other.title);
+            }
+        }
+        return diff;
     }
 }

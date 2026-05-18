@@ -1,18 +1,33 @@
 package at.htlhl.sew2.oop.special;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class TaskManager {
     static void main() {
-        String input1 = "1001;false;Milch kaufen;12.05.2026 18:00";
-        String input2 = "1002;false;Glühbirne wechseln;13.05.2026 15:00";
+        String inputString = """
+                1001;false;Milch kaufen;13.05.2026 18:00
+                1002;false;Glühbirne wechseln;13.05.2026 15:00
+                1003;false;Müll entsorgen;08.06.2026 11:00
+                1004;false;Auto laden;20.05.2026 08:00
+                """;
 
-        LocalDateTime localDate1 = LocalDateTime.parse("2026-05-12T18:00:00");
-        Task task1 = new Task(1, false, "Milch kaufen", localDate1);
-        IO.println(task1.toString());
+        String[] stringList = inputString.split("\n");
 
-        LocalDateTime localDate2 = LocalDateTime.parse("2026-05-13T15:00:00");
-        Task task2 = new Task(2, false, "Glühbirne wechseln", localDate2);
-        IO.println(task2.toString());
+        ArrayList<Task> tasks = new ArrayList<>();
+        for (String string : stringList) {
+            tasks.add(Task.valueOf(string));
+        }
+
+        IO.println("== Unsorted == ");
+        for (Task element : tasks) {
+            IO.println(element);
+        }
+
+        tasks.sort(null);
+
+        IO.println("== Sorted == ");
+        for (Task element : tasks) {
+            IO.println(element);
+        }
     }
 }
