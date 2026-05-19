@@ -1,26 +1,36 @@
 package at.htlhl.sew2.oop.special;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Task implements Comparable<Task> {
-    int id;
+    private int id;
     // boolean completed;
-    State state;
-    String title;
-    LocalDateTime dueDate;
+    private State state;
+    private String title;
+    private LocalDateTime dueDate;
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final static int INITIAL_ID = 1000;
+    private static int currentId = INITIAL_ID;
 
-    public Task(int id, State state, String title, LocalDateTime dueDate) {
-        this.id = id;
+    public Task(State state, String title, LocalDateTime dueDate) {
+        this.id = ++currentId;
         this.state = state;
         this.title = title;
         this.dueDate = dueDate;
     }
 
+    public Task(String title) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime endofDate = LocalDateTime.of(now.toLocalDate(), LocalTime.of(23, 59, 59));
+        this(State.INITIAL, title, endofDate);
+    }
+
     public static Task valueOf(String input) {
         String[] parts = input.split(";");
-        return new Task(Integer.parseInt(parts[0]), Boolean.parseBoolean(parts[1]) ? State.COMPLETED : State.INITIAL, parts[2], LocalDateTime.parse(parts[3], FORMATTER));
+        return new Task(Boolean.parseBoolean(parts[1]) ? State.COMPLETED : State.INITIAL, parts[2], LocalDateTime.parse(parts[3], FORMATTER));
     }
 
     public boolean equals(Object obj) {
@@ -33,7 +43,7 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return this.id + ", " + this.title + ", " + this.state + ", " + FORMATTER.format(this.dueDate);
+        return this.id + ", " + this.title + ", " + this.state.getDisplayName() + ", " + FORMATTER.format(this.dueDate);
     }
 
     public int compareTo(Task other) {
@@ -45,5 +55,21 @@ public class Task implements Comparable<Task> {
             }
         }
         return diff;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public State getState() {
+        return this.state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }
