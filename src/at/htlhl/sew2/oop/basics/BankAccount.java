@@ -1,28 +1,26 @@
 package at.htlhl.sew2.oop.basics;
 
-public class BankAccount {
+import java.time.LocalDate;
 
+public class BankAccount {
     public static final String SEPARATOR = ";";
 
-    private final int number;
-    private float balance;
+    private static int currentAccountNumber = 1000;
 
-    @Override
-    public String toString() {
-        return "BankAccount{" + "number=" + number + ", balance=" + balance + "}";
-    }
+    private final int id;
+    private double balance;
+    private AccountType accountType;
+    private Person owner;
 
-    public BankAccount(int number, float balance) {
-        this.number = number;
+    public BankAccount(double balance, AccountType accountType, Person owner) {
+        this.id = ++currentAccountNumber;
         this.balance = balance;
+        this.accountType = accountType;
+        this.owner = owner;
     }
 
-    public int getNumber() {
-        return this.number;
-    }
-
-    public float getBalance() {
-        return this.balance;
+    public BankAccount(AccountType accountType, Person owner) {
+        this(0, accountType, owner);
     }
 
     public static BankAccount valueOf(String input) {
@@ -31,20 +29,29 @@ public class BankAccount {
 
     public static BankAccount valueOf(String data, String separator) {
         String[] parts = data.split(separator);
-        int number = Integer.parseInt(parts[0]);
-        float balance = Float.parseFloat(parts[1]);
-        return new BankAccount(number, balance);
+        double balance = Double.parseDouble(parts[1]);
+        AccountType accountType = AccountType.GIRO;
+        Person owner = new Person("","", LocalDate.now(), Gender.MALE);
+        return new BankAccount(balance, accountType, owner);
     }
 
-    public void deposit(float amount) {
+    public int getId() {
+        return this.id;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void deposit(double amount) {
         if (amount > 0) {
             this.balance += amount;
         } else {
-            System.out.println("deposit()  could not get executed because of an invalid amount!");
+            System.out.println("deposit() could not get executed because of an invalid amount!");
         }
     }
 
-    public boolean withdraw(float amount) {
+    public boolean withdraw(double amount) {
         if (amount <= 0 || amount > this.balance) {
             System.out.println("withdraw() could not get executed because of insufficient funds or invalid amount!");
             return false;
@@ -53,39 +60,15 @@ public class BankAccount {
         return true;
     }
 
-    public void transfer(BankAccount target, float amount) {
+    public void transfer(BankAccount target, double amount) {
         boolean success = this.withdraw(amount);
         if (success) {
             target.deposit(amount);
         }
     }
 
-    static void main() {
-        /*
-        BankAccount ba1 = new BankAccount(1, 7f);
-        BankAccount ba2 = new BankAccount(2, 10f);
-        BankAccount ba3 = new BankAccount(3, -1f);
-        BankAccount ba4 = new BankAccount(4, 999f);
-        BankAccount ba5 = new BankAccount(5, -999f);
-        BankAccount[] accounts = {ba1, ba2, ba3, ba4, ba5};
-
-        BankAccount smallestAccount = accounts[0];
-        BankAccount highestAccount = accounts[0];
-
-        for (BankAccount account : accounts) {
-            if (account.getBalance() < smallestAccount.getBalance()) {
-                smallestAccount = account;
-            }
-            if (account.getBalance() > highestAccount.getBalance()) {
-                highestAccount = account;
-            }
-        }
-
-        System.out.println(smallestAccount);
-        System.out.println(highestAccount);
-         */
-
-        BankAccount ba1 = BankAccount.valueOf("1234;1000.1f");
-        System.out.println(ba1);
+    @Override
+    public String toString() {
+        return "BankAccount{" + "id=" + id + ", balance=" + balance + "}";
     }
 }
