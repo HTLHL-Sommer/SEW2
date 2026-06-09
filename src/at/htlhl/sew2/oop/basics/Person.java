@@ -15,6 +15,20 @@ public class Person {
         this.gender = gender;
     }
 
+    public static Person valueOf(String input, String separator) {
+        String[] parts = input.split(separator);
+        return new Person(parts[0], parts[1], LocalDate.parse(parts[2]), Gender.valueOf(parts[3]));
+    }
+
+    public String toString() {
+        return String.format("Name: %s %s, Date of Birth: %s, Gender: %s", this.firstname, this.lastname, this.dob.toString(), this.gender);
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+    }
+
     public String getFirstname() {
         return firstname;
     }

@@ -1,7 +1,5 @@
 package at.htlhl.sew2.oop.basics;
 
-import java.time.LocalDate;
-
 public class BankAccount {
     public static final String SEPARATOR = ";";
 
@@ -30,8 +28,8 @@ public class BankAccount {
     public static BankAccount valueOf(String data, String separator) {
         String[] parts = data.split(separator);
         double balance = Double.parseDouble(parts[1]);
-        AccountType accountType = AccountType.GIRO;
-        Person owner = new Person("","", LocalDate.now(), Gender.MALE);
+        AccountType accountType = AccountType.valueOf(parts[2]);
+        Person owner = Person.valueOf(parts[3], separator);
         return new BankAccount(balance, accountType, owner);
     }
 
@@ -43,11 +41,16 @@ public class BankAccount {
         return this.balance;
     }
 
-    public void deposit(double amount) {
+    public Person getOwner() {
+        return this.owner;
+    }
+
+    public void deposit(double amount) throws IllegalArgumentException {
         if (amount > 0) {
             this.balance += amount;
         } else {
             System.out.println("deposit() could not get executed because of an invalid amount!");
+            throw new IllegalArgumentException();
         }
     }
 
